@@ -1,0 +1,3 @@
+well it's cheaper to use namespaces for fxp but what you really lose by using POD objects is next to nothing in CPP (:
+using the exercises implementation i can implement eval_expr for fxp just by search and replacing the types
+for the namespace approach it would be more involved
