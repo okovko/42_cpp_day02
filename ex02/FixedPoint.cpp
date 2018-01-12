@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cstdint>
-
 #include <iostream>
 
 #include "FixedPoint.hpp"
@@ -37,7 +35,7 @@ bool			FixedPoint::operator==(FixedPoint const& rhs)
 
 bool			FixedPoint::operator!=(FixedPoint const& rhs)
 {
-	return (!(*this == rhs));
+	return (this->value != rhs.value);
 }
 
 bool			FixedPoint::operator>(FixedPoint const& rhs)
@@ -62,12 +60,20 @@ bool			FixedPoint::operator<=(FixedPoint const& rhs)
 
 FixedPoint		FixedPoint::operator+(FixedPoint const& rhs)
 {
-	return (FixedPoint(this->value + rhs.value));
+	FixedPoint	ret;
+
+	ret = FixedPoint();
+	ret.setRawBits(this->value + rhs.value);
+	return (FixedPoint(ret));
 }
 
 FixedPoint		FixedPoint::operator-(FixedPoint const& rhs)
 {
-	return (FixedPoint(this->value - rhs.value));
+	FixedPoint	ret;
+
+	ret = FixedPoint();
+	ret.setRawBits(this->value - rhs.value);
+	return (FixedPoint(ret));
 }
 
 FixedPoint		FixedPoint::operator*(FixedPoint const& rhs)
@@ -84,7 +90,7 @@ FixedPoint		FixedPoint::operator/(FixedPoint const& rhs)
 	FixedPoint	ret;
 
 	ret = FixedPoint();
-	ret.setRawBits(this->value / rhs.value);
+	ret.setRawBits((this->value << binary_point) / rhs.value);
 	return (ret);
 }
 
